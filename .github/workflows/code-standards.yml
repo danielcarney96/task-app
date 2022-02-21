@@ -8,22 +8,22 @@ jobs:
     name: Code standards
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: 8.1
-    - name: composer install
-      uses: php-actions/composer@v6
-      with:
-        args: --ignore-platform-reqs
-    - name: npm install
+      - uses: actions/checkout@v2
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.1
+      - name: composer install
+        uses: php-actions/composer@v6
+        with:
+          args: --ignore-platform-reqs
+      - name: npm install
         run: npm install
       - name: build assets
         run: npm run dev
-    - name: Run php-cs-fixer
-      run: ./vendor/bin/php-cs-fixer fix --dry-run
-    - name: Run PHPStan
-      run: ./vendor/bin/phpstan analyse
-    - name: Run eslint
-      run: npm run lint
+      - name: Run php-cs-fixer
+        run: ./vendor/bin/php-cs-fixer fix --dry-run
+      - name: Run PHPStan
+        run: ./vendor/bin/phpstan analyse
+      - name: Run eslint
+        run: npm run lint
