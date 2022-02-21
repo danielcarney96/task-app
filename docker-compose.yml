@@ -14,8 +14,7 @@ services:
       CONTAINER_NAME: laravel
       DB_HOST: database
       DB_DATABASE: app
-      DB_USERNAME: postgres
-      DB_PASSWORD: password
+      DB_USERNAME: root
       PHP_OPCACHE_VALIDATE_TIMESTAMPS: 1
 
   web:
@@ -28,17 +27,19 @@ services:
       - ./:/var/www
 
   database:
-    image: postgres:latest
+    image: mysql:latest
+    platform: linux/x86_64
     ports:
-      - 5432:5432
+      - 3306:3306
     volumes:
-      - database:/var/lib/postgresql/data
+      - database:/var/lib/mysql
+      - ./docker/database:/docker-entrypoint-initdb.d
     tty: true
     cap_add:
       - SYS_NICE
     environment:
-      POSTGRES_PASSWORD: "password"
-      POSTGRES_DB: "app"
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: "app"
 
   mailhog:
     image: mailhog/mailhog

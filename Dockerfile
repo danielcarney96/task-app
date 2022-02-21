@@ -32,15 +32,13 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     wget \
     python3-pip \
     libltdl-dev dnsutils nmap dnsmasq software-properties-common \
-    gnupg2 ca-certificates lsb-release \
-    libpq-dev \
-    postgresql
+    gnupg2 ca-certificates lsb-release
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install extensions
-RUN docker-php-ext-install zip exif pcntl opcache soap pgsql pdo_pgsql
+RUN docker-php-ext-install zip exif pcntl opcache soap pdo_mysql
 RUN docker-php-ext-configure intl
 RUN docker-php-ext-install intl
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg

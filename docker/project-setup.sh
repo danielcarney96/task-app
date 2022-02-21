@@ -77,6 +77,24 @@ echo "...setting up project..."
 
 steps_to_run_on_project_start
 
+# Wait for database container to be ready
+until mysql -h "$DB_HOST" -u "$DB_USERNAME" -e "USE $DB_DATABASE;"; do
+    echo "...database container not ready yet, retrying..."
+    sleep 1
+done
+
+# Check if database has any tables
+if [[ $(echo -n `mysql -h $DB_HOST -u $DB_USERNAME -sse "SELECT count(*) FROM information_schema.tables WHERE table_schema='$DB_DATABASE';"`) -gt 0 ]]; then
+
+    # Run steps when database already has tables
+    steps_to_run_when_database_is_available_and_seeded
+
+    display_ready_message
+
+    exec $cmd
+    exit 0
+fi
+
 # Run steps when database does not have any tables yet
 steps_to_run_when_database_is_available_and_not_seeded
 

@@ -1,5 +1,5 @@
 # Task board
-This is a Laravel 9 app using InertiaJS, React, Tailwind and PostgreSQL.
+This is a Laravel 9 app using InertiaJS, React, Tailwind and MySQL.
 
 ## Starting the project
 1. Checkout the project
