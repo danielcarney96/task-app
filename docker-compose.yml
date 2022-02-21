@@ -1,0 +1,56 @@
+version: '3.5'
+services:
+  app:
+    container_name: laravel
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        COMPOSER_INSTALL: 0
+        NPM_INSTALL: 0
+    tty: true
+    command: ["./docker/project-setup.sh", "php-fpm"]
+    environment:
+      CONTAINER_NAME: laravel
+      DB_HOST: database
+      DB_DATABASE: app
+      DB_USERNAME: postgres
+      DB_PASSWORD: password
+      PHP_OPCACHE_VALIDATE_TIMESTAMPS: 1
+
+  web:
+    image: nginx:alpine
+    tty: true
+    ports:
+      - 80:80
+    volumes:
+      - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+      - ./:/var/www
+
+  database:
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    volumes:
+      - database:/var/lib/postgresql/data
+    tty: true
+    cap_add:
+      - SYS_NICE
+    environment:
+      POSTGRES_PASSWORD: "password"
+      POSTGRES_DB: "app"
+
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - 1025:1025
+      - 8025:8025
+
+  redis:
+    image: redis
+    ports:
+      - "6382:6379"
+
+volumes:
+  database:
+    driver: local
