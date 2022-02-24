@@ -1,12 +1,8 @@
 import React, { useEffect } from 'react'
 import { Head, Link, useForm } from '@inertiajs/inertia-react'
 import route from 'ziggy-js'
-import Button from '../../Components/Button'
-import Checkbox from '../../Components/Checkbox'
 import Guest from '../../Layouts/Guest'
-import Input from '../../Components/Input'
-import Label from '../../Components/Label'
-import ValidationErrors from '../../Components/ValidationErrors'
+import { Button, Checkbox, Input, Label, ValidationErrors } from '../../Components'
 
 interface Props {
   status: string
