@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { Link } from '@inertiajs/inertia-react';
-import route from 'ziggy-js';
-import ApplicationLogo from '../Components/ApplicationLogo';
-import Dropdown from '../Components/Dropdown';
-import NavLink from '../Components/NavLink';
-import ResponsiveNavLink from '../Components/ResponsiveNavLink';
+import React, { useState } from "react";
+import { Link } from "@inertiajs/inertia-react";
+import route from "ziggy-js";
+import ApplicationLogo from "../Components/ApplicationLogo";
+import Dropdown from "../Components/Dropdown";
+import NavLink from "../Components/NavLink";
+import ResponsiveNavLink from "../Components/ResponsiveNavLink";
 
 interface Props {
     auth: any;
@@ -30,8 +30,8 @@ export default function Authenticated({ auth, header, children }: Props) {
 
                             <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <NavLink
-                                    href={route('dashboard')}
-                                    active={route().current('dashboard')}
+                                    href={route("dashboard")}
+                                    active={route().current("dashboard")}
                                 >
                                     Dashboard
                                 </NavLink>
@@ -47,7 +47,7 @@ export default function Authenticated({ auth, header, children }: Props) {
                                                 type="button"
                                                 className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
                                             >
-                                                {auth.user.name}
+                                                {auth.user.full_name}
 
                                                 <svg
                                                     className="ml-2 -mr-0.5 h-4 w-4"
@@ -67,7 +67,7 @@ export default function Authenticated({ auth, header, children }: Props) {
 
                                     <Dropdown.Content>
                                         <Dropdown.DropdownLink
-                                            href={route('logout')}
+                                            href={route("logout")}
                                             method="post"
                                             as="button"
                                         >
@@ -96,8 +96,8 @@ export default function Authenticated({ auth, header, children }: Props) {
                                     <path
                                         className={
                                             !showingNavigationDropdown
-                                                ? 'inline-flex'
-                                                : 'hidden'
+                                                ? "inline-flex"
+                                                : "hidden"
                                         }
                                         strokeLinecap="round"
                                         strokeLinejoin="round"
@@ -107,8 +107,8 @@ export default function Authenticated({ auth, header, children }: Props) {
                                     <path
                                         className={
                                             showingNavigationDropdown
-                                                ? 'inline-flex'
-                                                : 'hidden'
+                                                ? "inline-flex"
+                                                : "hidden"
                                         }
                                         strokeLinecap="round"
                                         strokeLinejoin="round"
@@ -123,13 +123,13 @@ export default function Authenticated({ auth, header, children }: Props) {
 
                 <div
                     className={`${
-                        showingNavigationDropdown ? 'block' : 'hidden'
+                        showingNavigationDropdown ? "block" : "hidden"
                     } sm:hidden`}
                 >
                     <div className="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink
-                            href={route('dashboard')}
-                            active={route().current('dashboard')}
+                            href={route("dashboard")}
+                            active={route().current("dashboard")}
                         >
                             Dashboard
                         </ResponsiveNavLink>
@@ -138,7 +138,7 @@ export default function Authenticated({ auth, header, children }: Props) {
                     <div className="pt-4 pb-1 border-t border-gray-200">
                         <div className="px-4">
                             <div className="font-medium text-base text-gray-800">
-                                {auth.user.name}
+                                {auth.user.full_name}
                             </div>
                             <div className="font-medium text-sm text-gray-500">
                                 {auth.user.email}
@@ -148,7 +148,7 @@ export default function Authenticated({ auth, header, children }: Props) {
                         <div className="mt-3 space-y-1">
                             <ResponsiveNavLink
                                 method="post"
-                                href={route('logout')}
+                                href={route("logout")}
                                 as="button"
                             >
                                 Log Out
