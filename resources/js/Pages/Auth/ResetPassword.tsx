@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { Head, useForm } from '@inertiajs/inertia-react'
 import route from 'ziggy-js'
-import { Guest } from '../../Layouts'
-import { Button, Input, Label, ValidationErrors } from '../../Components'
+import { Guest } from 'Layouts'
+import { Button, Input, Label, ValidationErrors } from 'Components'
 
 interface Props {
   token: string
