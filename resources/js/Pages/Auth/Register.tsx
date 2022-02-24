@@ -9,7 +9,8 @@ import ValidationErrors from '../../Components/ValidationErrors'
 
 export default function Register() {
   const { data, setData, post, processing, errors, reset } = useForm({
-    name: '',
+    first_name: '',
+    last_name: '',
     email: '',
     password: '',
     password_confirmation: '',
@@ -25,7 +26,8 @@ export default function Register() {
   const onHandleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setData(
       event.target.name as
-        | 'name'
+        | 'first_name'
+        | 'last_name'
         | 'email'
         | 'password'
         | 'password_confirmation',
@@ -49,14 +51,29 @@ export default function Register() {
 
       <form onSubmit={submit}>
         <div>
-          <Label forInput="name" value="Name" />
+          <Label forInput="first_name" value="First name" />
 
           <Input
             type="text"
-            name="name"
-            value={data.name}
+            name="first_name"
+            value={data.first_name}
             className="mt-1 block w-full"
-            autoComplete="name"
+            autoComplete="first_name"
+            isFocused
+            handleChange={onHandleChange}
+            required
+          />
+        </div>
+
+        <div className="mt-4">
+          <Label forInput="last_name" value="Last name" />
+
+          <Input
+            type="text"
+            name="last_name"
+            value={data.last_name}
+            className="mt-1 block w-full"
+            autoComplete="last_name"
             isFocused
             handleChange={onHandleChange}
             required
