@@ -8,7 +8,6 @@
 
 ## Checklist
 
-- [ ] Ticket has been moved to Peer Review
 - [ ] The `develop` branch has been merged into this branch and conflicts resolved
 - [ ] All existing tests are passing
 - [ ] Manual testing has been completed
