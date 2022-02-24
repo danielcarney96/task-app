@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Head, useForm } from '@inertiajs/inertia-react'
 import route from 'ziggy-js'
-import Guest from '../../Layouts/Guest'
+import { Guest } from '../../Layouts'
 import { Button, Input, Label, ValidationErrors } from '../../Components'
 
 export default function ConfirmPassword() {

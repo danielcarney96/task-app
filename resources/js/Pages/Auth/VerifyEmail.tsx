@@ -1,7 +1,7 @@
 import React from 'react'
 import { Head, Link, useForm } from '@inertiajs/inertia-react'
 import route from 'ziggy-js'
-import Guest from '../../Layouts/Guest'
+import { Guest } from '../../Layouts'
 import { Button } from '../../Components'
 
 interface Props {

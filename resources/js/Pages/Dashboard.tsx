@@ -1,6 +1,6 @@
 import React from 'react'
 import { Head } from '@inertiajs/inertia-react'
-import Authenticated from '../Layouts/Authenticated'
+import { Authenticated } from '../Layouts'
 
 export default function Dashboard(props: React.PropsWithChildren<any>) {
   return (
