@@ -36,8 +36,8 @@
         "@inertiajs/inertia-react": "^0.8.0",
         "@inertiajs/progress": "^0.2.7",
         "@types/react": "^17.0.39",
-        "components": "file:resources/js/components",
-        "layouts": "file:resources/js/layouts",
+        "components": "file:resources/js/Components",
+        "layouts": "file:resources/js/Layouts",
         "react": "^17.0.2",
         "react-dom": "^17.0.2",
         "ziggy-js": "^1.4.3"

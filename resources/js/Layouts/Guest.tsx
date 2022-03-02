@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from '@inertiajs/inertia-react'
-import ApplicationLogo from '../Components/ApplicationLogo'
+import ApplicationLogo from 'Components/ApplicationLogo'
 
 interface Props {
   children: React.ReactNode
