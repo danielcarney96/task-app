@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Project extends Model
 {
@@ -20,4 +21,29 @@ class Project extends Model
         'started_at',
         'ended_at',
     ];
+
+    public function epics(): HasMany
+    {
+        return $this->hasMany(Epic::class);
+    }
+
+    public function projectColumns(): HasMany
+    {
+        return $this->hasMany(ProjectColumn::class);
+    }
+
+    public function sprints(): HasMany
+    {
+        return $this->hasMany(Sprint::class);
+    }
+
+    public function stories(): HasMany
+    {
+        return $this->hasMany(Story::class);
+    }
+
+    public function storyTypes(): HasMany
+    {
+        return $this->hasMany(StoryType::class);
+    }
 }

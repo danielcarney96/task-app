@@ -20,3 +20,13 @@ To enter the container, use `docker-compose exec app bash`
 - username: root
 - database: app
 - port: 3306
+
+## Code quality tools
+
+The project uses a number of tools to ensure common issues are caught and that code is consistent.
+
+They should be called manually before creating a PR, if you forget though, the github action will pick it up.
+
+**php-cs-fixer:** `./vendor/bin/php-cs-fixer fix`
+
+**PHPStan:** `./vendor/bin/phpstan analyse`
