@@ -23,12 +23,19 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: 8.1
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '12'
       - name: composer install
         uses: php-actions/composer@v6
         with:
           ssh_key: ${{ secrets.SSH_KEY }}
           ssh_key_pub: ${{ secrets.SSH_KEY_PUB }}
           args: --ignore-platform-reqs
+      - name: npm install
+        run: npm install
+      - name: build assets
+        run: npm run prod
       - name: setup env
         run: cp .env.example .env
       - name: Generate key
