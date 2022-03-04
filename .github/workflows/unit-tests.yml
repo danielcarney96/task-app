@@ -35,7 +35,7 @@ jobs:
       - name: npm install
         run: npm install
       - name: build assets
-        run: npm run prod
+        run: npm run dev
       - name: setup env
         run: cp .env.example .env
       - name: Generate key
