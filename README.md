@@ -30,3 +30,11 @@ They should be called manually before creating a PR, if you forget though, the g
 **php-cs-fixer:** `./vendor/bin/php-cs-fixer fix`
 
 **PHPStan:** `./vendor/bin/phpstan analyse`
+
+## Testing
+
+[Pest](https://pestphp.com/) is used for PHP unit testing in this project. Testing can be done in the container using one of two commands:
+
+`php artisan test`
+
+`./vendor/bin/pest`
