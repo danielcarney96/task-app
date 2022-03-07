@@ -38,5 +38,3 @@ They should be called manually before creating a PR, if you forget though, the g
 `php artisan test`
 
 `./vendor/bin/pest`
-
-Testing is also done automatically with a github action.
