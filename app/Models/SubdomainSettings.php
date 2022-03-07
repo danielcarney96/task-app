@@ -10,7 +10,7 @@ class SubdomainSettings extends Model
 {
     use HasFactory;
 
-    public function SubDomain(): BelongsTo
+    public function subdomain(): BelongsTo
     {
         return $this->belongsTo(Subdomain::class);
     }
