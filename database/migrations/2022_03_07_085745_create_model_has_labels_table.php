@@ -14,12 +14,19 @@ return new class extends Migration
     public function up()
     {
         Schema::create('model_has_labels', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('label_id')->unsigned()->nullable();
-            $table->foreign('label_id')->references('id')->on('labels');
-            $table->string('model');
-            $table->string('model_id');
-            $table->timestamps();
+            $table->unsignedBigInteger('label_id');
+            $table->string('model_type');
+            $table->unsignedBigInteger('model_id');
+
+            $table->index(['model_id', 'model_type']);
+
+            $table->foreign('label_id')
+                ->references('id')
+                ->on('labels')
+                ->onDelete('cascade');
+
+            // 3 PKs to ensure each row is unique while allowing for duplicated ids in different combinations
+            $table->primary(['label_id', 'model_id', 'model_type']);
         });
     }
 
