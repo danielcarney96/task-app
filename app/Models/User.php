@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -53,6 +54,21 @@ class User extends Authenticatable
 
     public function getFullNameAttribute(): string
     {
-        return $this->first_name.' '.$this->last_name;
+        return $this->first_name . ' ' . $this->last_name;
+    }
+
+    public function userSettings(): HasMany
+    {
+        return $this->hasMany(UserSetting::class);
+    }
+
+    public function storyComments(): HasMany
+    {
+        return $this->hasMany(StoryComment::class);
+    }
+
+    public function subdomains(): HasMany
+    {
+        return $this->hasMany(Subdomain::class);
     }
 }
