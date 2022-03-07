@@ -41,26 +41,41 @@ trait HasLabels
         }, Arr::wrap($labels));
 
         return $query->whereHas('labels', function (Builder $subQuery) use ($labels) {
-            $key = (new Label())->getKeyName();
-            $subQuery->whereIn('labels' . ".$key", \array_column($labels, $key));
+            $subQuery->whereIn('labels.id', \array_column($labels, 'id'));
         });
     }
 
     public function addLabel(array|int|Label|Collection ...$labels)
     {
-        $labels = collect($labels)->flatten();
+        $labels = collect($labels)
+            ->flatten()
+            ->reduce(function ($array, $label) {
+                if (empty($label)) {
+                    return $array;
+                }
+
+                $label = $this->getStoredLabel($label);
+
+                if (!$label instanceof Label) {
+                    return $array;
+                }
+
+                array_push($array, $label->id);
+
+                return $array;
+            }, []);
 
         $model = $this->getModel();
 
         if ($model->exists) {
             $this->labels()->sync($labels, false);
-            $labels->load('labels');
+            $model->load('labels');
         } else {
             $class = \get_class($model);
 
             $class::saved(
                 function ($object) use ($labels, $model) {
-                    if ($model->getKey() != $object->getKey()) {
+                    if ($model->id != $object->id) {
                         return;
                     }
 
@@ -75,7 +90,7 @@ trait HasLabels
 
     public function removeLabel(int|Label $label)
     {
-        $this->labels()->detach($label);
+        $this->labels()->detach($this->getStoredLabel($label));
 
         $this->load('labels');
 
@@ -92,13 +107,11 @@ trait HasLabels
     public function hasLabel(array|int|Label|Collection $labels): bool
     {
         if (is_int($labels)) {
-            $key = (new Label())->getKeyName();
-
-            return $this->labels->contains($key, $labels);
+            return $this->labels->contains('id', $labels);
         }
 
         if ($labels instanceof Label) {
-            return $this->labels->contains($labels->getKeyName(), $labels->getKey());
+            return $this->labels->contains('id', $labels->id);
         }
 
         if (is_array($labels)) {
@@ -112,5 +125,14 @@ trait HasLabels
         }
 
         return $labels->intersect($this->labels)->isNotEmpty();
+    }
+
+    protected function getStoredLabel(Label|int $label): Label
+    {
+        if (is_numeric($label)) {
+            return Label::where('id', $label)->first();
+        }
+
+        return $label;
     }
 }
