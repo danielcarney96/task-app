@@ -18,6 +18,7 @@ class ModelHasLabel extends Model
     protected $fillable = [
         'label_id',
         'model_id',
+        'model',
     ];
 
     public function label(): BelongsTo
