@@ -10,6 +10,15 @@ class SubdomainSettings extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'subdomain_id',
+    ];
+
     public function subdomain(): BelongsTo
     {
         return $this->belongsTo(Subdomain::class);

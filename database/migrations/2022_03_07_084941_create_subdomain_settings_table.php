@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('subdomain_settings', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('subdomain_id')->unsigned()->nullable();
+            $table->foreign('subdomain_id')->references('id')->on('subdomains');
             $table->timestamps();
         });
     }
