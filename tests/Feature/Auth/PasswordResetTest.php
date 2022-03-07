@@ -29,7 +29,7 @@ it('displays password reset page', function () {
     $this->post('/forgot-password', ['email' => $user->email]);
 
     Notification::assertSentTo($user, ResetPassword::class, function ($notification) {
-        $this->get('/reset-password/' . $notification->token)->assertStatus(200);
+        $this->get('/reset-password/'.$notification->token)->assertStatus(200);
 
         return true;
     });

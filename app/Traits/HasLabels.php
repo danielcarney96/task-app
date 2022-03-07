@@ -13,7 +13,7 @@ trait HasLabels
     public static function bootHasLabels()
     {
         static::deleting(function ($model) {
-            if (method_exists($model, 'isForceDeleting') && !$model->isForceDeleting()) {
+            if (method_exists($model, 'isForceDeleting') && ! $model->isForceDeleting()) {
                 return;
             }
 
@@ -37,7 +37,7 @@ trait HasLabels
                 return $label;
             }
 
-            return Label::findById($label);
+            return Label::where('id', $label);
         }, Arr::wrap($labels));
 
         return $query->whereHas('labels', function (Builder $subQuery) use ($labels) {
@@ -56,7 +56,7 @@ trait HasLabels
 
                 $label = $this->getStoredLabel($label);
 
-                if (!$label instanceof Label) {
+                if (! $label instanceof Label) {
                     return $array;
                 }
 
