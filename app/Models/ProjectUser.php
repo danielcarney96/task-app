@@ -10,6 +10,16 @@ class ProjectUser extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'project_id',
+        'user_id',
+    ];
+
     public function project(): BelongsTo
     {
         return $this->belongsTo(Project::class);
