@@ -48,11 +48,6 @@ class Project extends Model
         return $this->hasMany(StoryType::class);
     }
 
-    public function projectUser(): HasMany
-    {
-        return $this->hasMany(ProjectUser::class);
-    }
-
     public function projectSettings(): HasMany
     {
         return $this->hasMany(ProjectSetting::class);
