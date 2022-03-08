@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
-use App\Traits\HasLabels;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Task extends Model
+class StoryComment extends Model
 {
-    use HasFactory, HasLabels;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -17,11 +16,18 @@ class Task extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'project_id',
         'story_id',
+        'text',
     ];
 
     public function story(): BelongsTo
     {
         return $this->belongsTo(Story::class);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }

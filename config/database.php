@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Database\DBAL\TimestampType;
 use Illuminate\Support\Str;
 
 return [
@@ -144,4 +145,20 @@ return [
 
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Doctrine configuration
+    |--------------------------------------------------------------------------
+    |
+    | Here we can specify additional doctrine rules.
+    | For example, we can register the 'timestamp' class to allow us to change
+    | a column type to and from a timestamp.
+    |
+    */
+
+    'dbal' => [
+        'types' => [
+            'timestamp' => TimestampType::class,
+        ],
+    ],
 ];

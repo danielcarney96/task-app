@@ -15,6 +15,7 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Tests\TestCase;
 
 uses(Tests\TestCase::class)->in('Feature');
+uses(Tests\TestCase::class)->in('Unit');
 
 /*
 |--------------------------------------------------------------------------
