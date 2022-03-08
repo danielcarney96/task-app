@@ -53,6 +53,11 @@ class Project extends Model
         return $this->hasMany(ProjectSetting::class);
     }
 
+    public function labels(): HasMany
+    {
+        return $this->hasMany(Label::class);
+    }
+
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class)->using(ProjectUser::class);
