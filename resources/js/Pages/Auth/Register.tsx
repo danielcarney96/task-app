@@ -71,7 +71,6 @@ export default function Register() {
             value={data.last_name}
             className="mt-1 block w-full"
             autoComplete="last_name"
-            isFocused
             handleChange={onHandleChange}
             required
           />
