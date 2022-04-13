@@ -1,6 +1,5 @@
 <?php
 
-use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
@@ -16,7 +15,7 @@ it('registers new users', function () {
         'email' => 'test@example.com',
         'password' => 'password',
         'password_confirmation' => 'password',
-    ])->assertRedirect(RouteServiceProvider::HOME);
+    ])->assertRedirect('register-subdomain');
 
     $this->assertAuthenticated();
 });

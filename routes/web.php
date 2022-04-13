@@ -16,7 +16,7 @@ use Inertia\Inertia;
 |
 */
 
-Route::domain('{subdomain}.' . config('app.short_url'))->group(function () {
+Route::domain('{subdomain}.'.config('app.short_url'))->group(function () {
     Route::get('/', [RegisterSubdomainController::class, 'example'])->name('subdomain.home');
 });
 
@@ -33,4 +33,4 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

@@ -18,7 +18,9 @@ class RegisterSubdomainController extends Controller
 
     public function store(CreateSubdomainAction $action, SubdomainRequest $request)
     {
-        $data = new SubdomainData(...$request->validated(), user: $request->user());
+        $data = new SubdomainData(
+            ...array_merge($request->validated(), ['user' => $request->user()])
+        );
 
         $subdomain = $action->execute($data);
 
