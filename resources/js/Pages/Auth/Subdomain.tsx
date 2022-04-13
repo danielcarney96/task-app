@@ -22,7 +22,7 @@ export const Subdomain: React.FC<ISubdomainProps> = (props) => {
 
   return (
     <>
-      <Head title="Subdomain" />
+      <Head title="Register Subdomain" />
       <ValidationErrors errors={errors} />
 
       <form onSubmit={submit}>
