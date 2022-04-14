@@ -11,7 +11,7 @@ export const Subdomain: React.FC<ISubdomainProps> = (props) => {
   })
 
   const onHandleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setData(event.target.name as 'name', event.target.value)
+    setData('name', event.target.value)
   }
 
   const submit = (e: React.SyntheticEvent) => {
