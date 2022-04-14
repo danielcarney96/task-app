@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisterSubdomainController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -14,6 +15,10 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::domain('{subdomain}.'.config('app.short_url'))->group(function () {
+    Route::get('/', [RegisterSubdomainController::class, 'example'])->name('subdomain.home');
+});
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
